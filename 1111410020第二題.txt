@@ -1,0 +1,40 @@
+            if (int.TryParse(input, out int number))
+            {
+                if (number >= 1 && number < 4000)
+                {
+                    string romanNumeral = ConvertToRoman(number);
+                    Console.WriteLine($"羅馬數字為：{romanNumeral}");
+                }
+                else
+                {
+                    Console.WriteLine("請輸入1 到 3999！");
+                }
+            }
+            else
+            {
+                Console.WriteLine("請輸入數字。");
+            }
+
+            這段在判斷數字是否大於4000如果是則不處理如果不是則繼續往下
+        }
+
+        static string ConvertToRoman(int number)
+        {
+          
+            string[] thousands = { "", "M", "MM", "MMM" };
+            string[] hundreds = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+            string[] tens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+            string[] ones = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+給予判定 1等於I以此類推
+            int thou = number / 1000;
+            int hund = (number % 1000) / 100;
+            int ten = (number % 100) / 10;
+            int one = number % 10;
+數字用除的
+如 我們輸入3514 會先除一千得到3再除一百得到5
+最後得出MMMDXIV
+            return thousands[thou] + hundreds[hund] + tens[ten] + ones[one];
+        }
+    }
+}
+
